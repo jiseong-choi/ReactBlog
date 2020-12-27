@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import { Input, Form, message,Typography, Button } from 'antd'
 import Axios from 'axios'
 import { useSelector } from 'react-redux'; 
-import { USER_SERVER } from '../../Config';
 import { withRouter } from 'react-router-dom'
 
 const { Title } = Typography;
