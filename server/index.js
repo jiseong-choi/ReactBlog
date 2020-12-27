@@ -4,6 +4,7 @@ const config = require('./config/key');//It can divide developer mod and prod mo
 const cookieParser = require('cookie-parser');//요청된 쿠키를 쉽게 추출할 수 있도록 해주는 미들웨어. 웹 브라우저에서 데이터베이스로부터 데이터를 저장하거나 읽어올 수 있게 중간에 미들웨어가 존재하게 된다.
 const { auth } = require('./middleware/auth');
 const { User } = require('./models/User');
+const { Article } = require('./models/Article');
 const port = 5000;//여러번 재사용할 상수는 선언해주면 좋음
 
 
@@ -87,6 +88,16 @@ app.get('/api/users/logout', auth, (req, res) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).send({
           success: true
+        })
+    })
+})
+
+app.post('api/article/write', (req, res) => {
+    const article = new Article(req.body);
+    article.save((err, art) => {
+        if (err) return res.json({ success: false })
+        return res.status(200).send({
+            success:true
         })
     })
 })

@@ -10,8 +10,10 @@ import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import Auth from './hoc/auth'
 import NavBar from './components/views/NavBar/NavBar'
 import WritingPage from './components/views/WritingPage/WritingPage';
+import { useSelector } from 'react-redux'; 
 
 function App() {
+  
   return (
     <Router>
       <div>

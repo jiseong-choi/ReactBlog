@@ -1,7 +1,11 @@
-import React,{useSelector,useState} from 'react'
-import { Input, TextArea, Title, Form, message } from 'antd'
+import React,{useState} from 'react'
+import { Input, Form, message,Typography, Button } from 'antd'
 import Axios from 'axios'
+import { useSelector } from 'react-redux'; 
+import { USER_SERVER } from '../../Config';
+import { withRouter } from 'react-router-dom'
 
+const { Title } = Typography;
 
 function WritingPage(props) {
 
@@ -13,28 +17,29 @@ function WritingPage(props) {
 
     const titleOnChange = (e) => {
         e.preventDefault();
-        setArticleTitle(e.current.value)
+        setArticleTitle(e.currentTarget.value)
     }
 
     const descriptionOnChange = (e) => {
         e.preventDefault();
-        setDescription(e.current.value)
+        setDescription(e.currentTarget.value)
     }
 
     const articleOnChange = (e) => {
         e.preventDefault();
-        setAriticle(e.current.value)
+        setAriticle(e.currentTarget.value)
     }
 
 
     const onSubmit = (e) => {
         const variable = {
             writer: user.userData._id,
-            title: Ariticle,
+            title: ArticleTitle,
             description: Description,
             article:Ariticle
         }
-        Axios.post('', variable)
+        console.log(variable)
+        Axios.post(`api/article/write`, variable)
             .then(response => {
                 if (response.data.success) {
                     message.success('글 업로드를 완료 했습니다.')
@@ -48,7 +53,7 @@ function WritingPage(props) {
     }
 
     return (
-        <div style={{ margin:'auto'}}>
+        <div style={{ margin:'auto' }}>
             <div>
                 <Title level={2}>
                     글 작성
@@ -60,20 +65,25 @@ function WritingPage(props) {
                 <label>
                     글 제목
                 </label>
-                <Input onChange={titleOnChange} value={ArticleTitle} />
+                <Input onChange={titleOnChange} value={ArticleTitle} style={{width:'500px'}} />
                 <br />
                 <label>
                     설명(부제)
                 </label>
-                <Input onChange={descriptionOnChange} value={Description} />
+                <Input onChange={descriptionOnChange} value={Description} style={{width:'500px'}} />
                 <br />
                 <label>
                     글 작성
                 </label>
-                <TextArea onChange={articleOnChange} value={Ariticle} />
+                <br />
+                <Input.TextArea onChange={articleOnChange} value={Ariticle} style={{ width: '800px' }} />
+                
+                <Button type="primary" size='large' onClick={onSubmit}>
+                    Submit
+                </Button>
             </Form>
         </div>
     )
 }
 
-export default WritingPage
+export default withRouter(WritingPage)
