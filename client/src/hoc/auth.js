@@ -15,7 +15,10 @@ export default function (SpecificComponent,option,adminRoute = null) {
                     if(option === true) {
                         props.history.push('/login');
                     }
-                }else{
+                }
+                else if(response.payload.emailAuth ==false) {
+                    props.history.push('/emailAuth')
+                }else {
                     if(adminRoute&&!response.payload.isAdmin) {
                         props.history.push('/')
                     }else{

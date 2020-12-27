@@ -31,6 +31,10 @@ const userSchema = mongoose.Schema({// Schema declares type of its value.
     },
     tokenExp:{
         type:Number
+    },
+    emailAuth: {
+        type: Boolean,
+        default:false
     }
 });
 

@@ -60,7 +60,7 @@ app.post('/api/users/login',(req,res) => {//로그인 기능 구현 post methods
                 //save the token storage : cookie, local, session i will save on cookie
                 res.cookie("x_auth",user.token)
                     .status(200)
-                    .json({ loginSucess:true,userId:user._id })
+                    .json({ loginSuccess:true,userId:user._id,emailAuth:user.emailAuth })
             })                
         })
     })
@@ -76,7 +76,8 @@ app.get('/api/users/auth',auth,(req,res) => {
         name:req.user.name,
         lastname:req.user.lastname,
         role:req.user.role,
-        image:req.user.image
+        image: req.user.image,
+        emailAuth:req.user.emailAuth
     })
 })
 

@@ -10,7 +10,7 @@ import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import Auth from './hoc/auth'
 import NavBar from './components/views/NavBar/NavBar'
 import WritingPage from './components/views/WritingPage/WritingPage';
-import { useSelector } from 'react-redux'; 
+import EmailAuthPage from './components/views/EmailAuthPage/EmailAuthPage'
 
 function App() {
   
@@ -29,7 +29,8 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage,null)} />
           <Route exact path="/login" component={Auth(LoginPage,false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          <Route exact path="/writing" component={Auth(WritingPage,true)} />
+          <Route exact path="/writing" component={Auth(WritingPage, true)} />
+          <Route exact path="/emailAuth" component={Auth(EmailAuthPage,true)} />
         </Switch>
       </div>
     </Router>
