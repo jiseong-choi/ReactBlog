@@ -105,5 +105,5 @@ app.post('api/article/write', (req, res) => {
 
 
 app.listen(port, () => {//포트를 기다린다? 라고 생각하면됨
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at address : http://localhost:${port}`)
 }) 
